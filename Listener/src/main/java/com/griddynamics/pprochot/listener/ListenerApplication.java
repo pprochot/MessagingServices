@@ -36,8 +36,4 @@ public class ListenerApplication {
         return factory;
     }
 
-    @Bean
-    public Queue queue() {
-        return new Queue("q.message");
-    }
 }
