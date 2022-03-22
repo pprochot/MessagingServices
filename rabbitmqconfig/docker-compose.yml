@@ -1,0 +1,51 @@
+version: "3.3"
+
+networks:
+  rabbits:
+    driver: bridge
+
+services:
+  rabbitmq-1:
+    image: rabbitmq:3.8-management
+    container_name: 'rabbit-1'
+    hostname: 'rabbit-1'
+    ports:
+      - 8081:5672
+      - 8082:15672
+    networks:
+      - rabbits
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=PJARETZBRWNTRJRVHVOG%
+      - RABBITMQ_CONFIG_FILE=/config/rabbitmq
+    volumes:
+     - ${PWD}/config/rabbit-1/:/config
+
+  rabbitmq-2:
+    image: rabbitmq:3.8-management
+    container_name: 'rabbit-2'
+    hostname: 'rabbit-2'
+    ports:
+      - 8083:5672
+      - 8084:15672
+    networks:
+      - rabbits
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=PJARETZBRWNTRJRVHVOG%
+      - RABBITMQ_CONFIG_FILE=/config/rabbitmq
+    volumes:
+     - ${PWD}/config/rabbit-2/:/config
+
+  rabbitmq-3:
+    image: rabbitmq:3.8-management
+    container_name: 'rabbit-3'
+    hostname: 'rabbit-3'
+    ports:
+      - 8085:5672
+      - 8086:15672
+    networks:
+      - rabbits
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=PJARETZBRWNTRJRVHVOG%
+      - RABBITMQ_CONFIG_FILE=/config/rabbitmq
+    volumes:
+     - ${PWD}/config/rabbit-3/:/config
